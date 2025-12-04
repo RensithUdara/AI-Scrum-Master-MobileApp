@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../constants/colors.dart';
+import '../../models/project_analysis_model.dart';
 import '../../providers/project_provider.dart';
 import '../../services/firestore_service.dart';
-import '../../models/project_analysis_model.dart';
 
 class AnalyticsScreen extends StatelessWidget {
   const AnalyticsScreen({super.key});
@@ -47,9 +48,9 @@ class AnalyticsScreen extends StatelessWidget {
       child: Text(
         title,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-          fontWeight: FontWeight.w700,
-          color: AppColors.text,
-        ),
+              fontWeight: FontWeight.w700,
+              color: AppColors.text,
+            ),
       ),
     );
   }
@@ -67,7 +68,7 @@ class AnalyticsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.08),
+                  color: Colors.black.withOpacity(0.08),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -93,7 +94,7 @@ class AnalyticsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: Colors.black.withOpacity(0.08),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -117,7 +118,7 @@ class AnalyticsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: Colors.black.withOpacity(0.08),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -210,7 +211,7 @@ class AnalyticsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -221,7 +222,7 @@ class AnalyticsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.1),
+              color: color.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(icon, color: color, size: 28),
@@ -274,7 +275,7 @@ class AnalyticsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.08),
+                  color: Colors.black.withOpacity(0.08),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -319,7 +320,7 @@ class AnalyticsScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.08),
+                          color: Colors.black.withOpacity(0.08),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -348,7 +349,7 @@ class AnalyticsScreen extends StatelessWidget {
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: AppColors.primary.withValues(alpha: 0.1),
+                                color: AppColors.primary.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
@@ -388,8 +389,8 @@ class AnalyticsScreen extends StatelessWidget {
                                       backgroundColor: Colors.grey[200],
                                       valueColor:
                                           const AlwaysStoppedAnimation<Color>(
-                                            AppColors.primary,
-                                          ),
+                                        AppColors.primary,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -435,9 +436,8 @@ class AnalyticsScreen extends StatelessWidget {
     int totalCompleted = 0;
 
     for (final project in projects) {
-      final analysis = await FirestoreService()
-          .watchLatestAnalysis(project.id)
-          .first;
+      final analysis =
+          await FirestoreService().watchLatestAnalysis(project.id).first;
       if (analysis != null) {
         for (final milestone in analysis.milestones) {
           for (final subtask in milestone.subtasks) {

@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
-import 'package:flutter/material.dart';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../constants/colors.dart';
 import '../../providers/project_provider.dart';
 import '../../services/firestore_service.dart';
@@ -58,16 +60,16 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 'New Project',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.text,
-                ),
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.text,
+                    ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Create a new project to get started',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+                      color: AppColors.textSecondary,
+                    ),
               ),
               const SizedBox(height: 24),
 
@@ -146,8 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pop(bottomSheetContext);
 
                         if (mounted) {
-                          final projectProvider = context
-                              .read<ProjectProvider>();
+                          final projectProvider =
+                              context.read<ProjectProvider>();
                           final success = await projectProvider.createProject(
                             name: projectName,
                           );
@@ -163,8 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             await PlatformDialogs.showErrorDialog(
                               context: context,
                               title: 'Error',
-                              message:
-                                  projectProvider.errorMessage ??
+                              message: projectProvider.errorMessage ??
                                   'Failed to create project',
                             );
                           }
@@ -234,19 +235,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 24),
                     Text(
                       'No Projects Yet',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(
-                            color: AppColors.text,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: AppColors.text,
+                                fontWeight: FontWeight.w600,
+                              ),
                     ),
                     const SizedBox(height: 12),
                     Text(
                       'Tap the + button to create your first project',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                            color: AppColors.textSecondary,
+                          ),
                     ),
                   ],
                 ),
@@ -266,11 +267,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Text(
                       'Your Projects',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.text,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.text,
+                              ),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -287,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.08),
+                              color: Colors.black.withOpacity(0.08),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -427,20 +428,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           gradient: LinearGradient(
                                             colors: project.status == 'active'
                                                 ? [
-                                                    Colors.green.withValues(
-                                                      alpha: 0.1,
-                                                    ),
-                                                    Colors.green.withValues(
-                                                      alpha: 0.05,
-                                                    ),
+                                                    Colors.green
+                                                        .withOpacity(0.1),
+                                                    Colors.green
+                                                        .withOpacity(0.05),
                                                   ]
                                                 : [
-                                                    Colors.orange.withValues(
-                                                      alpha: 0.1,
-                                                    ),
-                                                    Colors.orange.withValues(
-                                                      alpha: 0.05,
-                                                    ),
+                                                    Colors.orange
+                                                        .withOpacity(0.1),
+                                                    Colors.orange
+                                                        .withOpacity(0.05),
                                                   ],
                                           ),
                                           borderRadius: BorderRadius.circular(
@@ -448,12 +445,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           border: Border.all(
                                             color: project.status == 'active'
-                                                ? Colors.green.withValues(
-                                                    alpha: 0.3,
-                                                  )
-                                                : Colors.orange.withValues(
-                                                    alpha: 0.3,
-                                                  ),
+                                                ? Colors.green.withOpacity(0.3)
+                                                : Colors.orange
+                                                    .withOpacity(0.3),
                                             width: 1,
                                           ),
                                         ),
@@ -471,8 +465,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   shape: BoxShape.circle,
                                                   color:
                                                       project.status == 'active'
-                                                      ? Colors.green
-                                                      : Colors.orange,
+                                                          ? Colors.green
+                                                          : Colors.orange,
                                                 ),
                                               ),
                                               const SizedBox(width: 6),
@@ -483,8 +477,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: TextStyle(
                                                   fontSize: 11,
                                                   fontWeight: FontWeight.w700,
-                                                  color:
-                                                      project.status == 'active'
+                                                  color: project.status ==
+                                                          'active'
                                                       ? Colors.green.shade700
                                                       : Colors.orange.shade700,
                                                 ),
@@ -544,14 +538,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   Icon(
                                                     isCompleted
                                                         ? Icons
-                                                              .check_circle_outline
+                                                            .check_circle_outline
                                                         : Icons
-                                                              .trending_up_outlined,
+                                                            .trending_up_outlined,
                                                     size: 16,
                                                     color: isCompleted
                                                         ? Colors.green
                                                         : AppColors
-                                                              .textSecondary,
+                                                            .textSecondary,
                                                   ),
                                                   const SizedBox(width: 8),
                                                   const Text(
@@ -569,26 +563,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                               Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5,
-                                                    ),
+                                                  horizontal: 10,
+                                                  vertical: 5,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: progress < 30
-                                                      ? Colors.red.withValues(
-                                                          alpha: 0.15,
-                                                        )
+                                                      ? Colors.red
+                                                          .withOpacity(0.15)
                                                       : progress < 60
-                                                      ? Colors.orange
-                                                            .withValues(
-                                                              alpha: 0.15,
-                                                            )
-                                                      : progress < 100
-                                                      ? Colors.blue.withValues(
-                                                          alpha: 0.15,
-                                                        )
-                                                      : Colors.green.withValues(
-                                                          alpha: 0.15,
-                                                        ),
+                                                          ? Colors.orange
+                                                              .withOpacity(0.15)
+                                                          : progress < 100
+                                                              ? Colors.blue
+                                                                  .withOpacity(
+                                                                      0.15)
+                                                              : Colors.green
+                                                                  .withOpacity(
+                                                                      0.15),
                                                   borderRadius:
                                                       BorderRadius.circular(6),
                                                 ),
@@ -600,10 +591,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     color: progress < 30
                                                         ? Colors.red.shade700
                                                         : progress < 60
-                                                        ? Colors.orange.shade700
-                                                        : progress < 100
-                                                        ? Colors.blue.shade700
-                                                        : Colors.green.shade700,
+                                                            ? Colors
+                                                                .orange.shade700
+                                                            : progress < 100
+                                                                ? Colors.blue
+                                                                    .shade700
+                                                                : Colors.green
+                                                                    .shade700,
                                                   ),
                                                 ),
                                               ),
@@ -620,14 +614,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                               backgroundColor: AppColors.border,
                                               valueColor:
                                                   AlwaysStoppedAnimation<Color>(
-                                                    progress < 30
-                                                        ? Colors.red
-                                                        : progress < 60
+                                                progress < 30
+                                                    ? Colors.red
+                                                    : progress < 60
                                                         ? Colors.orange
                                                         : progress < 100
-                                                        ? Colors.blue
-                                                        : Colors.green,
-                                                  ),
+                                                            ? Colors.blue
+                                                            : Colors.green,
+                                              ),
                                             ),
                                           ),
                                         ],

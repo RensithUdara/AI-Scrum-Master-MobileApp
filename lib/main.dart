@@ -1,16 +1,18 @@
 import 'dart:io';
-import 'package:ai_scrum/firebase_options.dart';
+
+import 'package:ai_scrum_master/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'constants/colors.dart';
 import 'providers/auth_provider.dart';
 import 'providers/project_provider.dart';
-import 'screens/splash_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/dashboard_screen.dart';
-import 'constants/colors.dart';
+import 'screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,16 +1,18 @@
 // ignore_for_file: use_build_context_synchronously, deprecated_member_use
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../constants/colors.dart';
-import '../../models/project_model.dart';
 import '../../models/project_analysis_model.dart';
+import '../../models/project_model.dart';
 import '../../providers/project_provider.dart';
+import '../../services/firestore_service.dart';
+import '../../services/n8n_service.dart';
 import '../../utils/platform_dialogs.dart';
 import '../../widgets/ios_button.dart';
-import '../../services/n8n_service.dart';
-import '../../services/firestore_service.dart';
 import '../../widgets/processing_dialog.dart';
 import 'analysis_results_screen.dart';
 
@@ -38,41 +40,39 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
     _promptController = TextEditingController();
     _project = widget.project;
     // Primary listener: user-scoped path
-    _analysisSub = FirestoreService()
-        .watchLatestAnalysis(_project.id)
-        .listen(
-          (ProjectAnalysis? analysis) {
-            if (analysis != null &&
-                mounted &&
-                (_waitingForAnalysis || !_navigated)) {
-              debugPrint(
-                '[Project Analysis] ✅ Results received: ${analysis.milestones.length} milestones, ${analysis.requiredApis.length} APIs',
-              );
-              if (_dialogOpen) {
-                Navigator.of(context, rootNavigator: true).pop();
-                _dialogOpen = false;
-              }
-              _waitingForAnalysis = false;
-              _navigated = true;
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => AnalysisResultsScreen(
-                    analysis: analysis,
-                    onClose: () => Navigator.pop(context),
-                    projectId: _project.id,
-                  ),
-                ),
-              );
-            }
-            setState(() {});
-          },
-          onError: (e) {
-            if (_dialogOpen) {
-              Navigator.of(context, rootNavigator: true).pop();
-              _dialogOpen = false;
-            }
-          },
-        );
+    _analysisSub = FirestoreService().watchLatestAnalysis(_project.id).listen(
+      (ProjectAnalysis? analysis) {
+        if (analysis != null &&
+            mounted &&
+            (_waitingForAnalysis || !_navigated)) {
+          debugPrint(
+            '[Project Analysis] ✅ Results received: ${analysis.milestones.length} milestones, ${analysis.requiredApis.length} APIs',
+          );
+          if (_dialogOpen) {
+            Navigator.of(context, rootNavigator: true).pop();
+            _dialogOpen = false;
+          }
+          _waitingForAnalysis = false;
+          _navigated = true;
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => AnalysisResultsScreen(
+                analysis: analysis,
+                onClose: () => Navigator.pop(context),
+                projectId: _project.id,
+              ),
+            ),
+          );
+        }
+        setState(() {});
+      },
+      onError: (e) {
+        if (_dialogOpen) {
+          Navigator.of(context, rootNavigator: true).pop();
+          _dialogOpen = false;
+        }
+      },
+    );
 
     // Fallback after 8s: collectionGroup listener if primary did not navigate yet
     Future.delayed(const Duration(seconds: 8), () {
@@ -224,7 +224,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
         ),
         backgroundColor: AppColors.white,
         elevation: 1,
-        shadowColor: Colors.black.withValues(alpha: 0.1),
+        shadowColor: Colors.black.withOpacity(0.1),
         foregroundColor: AppColors.text,
         actions: [
           PopupMenuButton(
@@ -259,14 +259,14 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      AppColors.primary.withValues(alpha: 0.1),
-                      AppColors.primary.withValues(alpha: 0.05),
+                      AppColors.primary.withOpacity(0.1),
+                      AppColors.primary.withOpacity(0.05),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.1),
+                      color: AppColors.primary.withOpacity(0.1),
                       blurRadius: 16,
                       offset: const Offset(0, 4),
                     ),
@@ -296,7 +296,9 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
                             children: [
                               Text(
                                 'AI Scrum Master',
-                                style: Theme.of(context).textTheme.headlineSmall
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
                                     ?.copyWith(
                                       fontWeight: FontWeight.w700,
                                       color: AppColors.text,
@@ -305,7 +307,9 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
                               const SizedBox(height: 4),
                               Text(
                                 'Generate your project roadmap instantly',
-                                style: Theme.of(context).textTheme.bodySmall
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
                                     ?.copyWith(color: AppColors.textSecondary),
                               ),
                             ],
@@ -336,18 +340,18 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
               Text(
                 'AI Scrum Master',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 26,
-                  color: AppColors.text,
-                ),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 26,
+                      color: AppColors.text,
+                    ),
               ),
               const SizedBox(height: 10),
               Text(
                 'Describe your project goals and let AI generate a complete roadmap:',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  fontSize: 15,
-                ),
+                      color: AppColors.textSecondary,
+                      fontSize: 15,
+                    ),
               ),
               const SizedBox(height: 32),
 
@@ -355,10 +359,10 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
               Text(
                 'Describe Your Project',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                  color: AppColors.text,
-                ),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18,
+                      color: AppColors.text,
+                    ),
               ),
               const SizedBox(height: 8),
               Text(
@@ -493,7 +497,7 @@ class _FeaturePill extends StatelessWidget {
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: AppColors.primary.withValues(alpha: 0.3),
+          color: AppColors.primary.withOpacity(0.3),
           width: 1,
         ),
       ),

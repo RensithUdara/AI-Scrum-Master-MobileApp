@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../constants/colors.dart';
 import '../../models/project_analysis_model.dart';
 import '../../services/firestore_service.dart';
@@ -78,14 +79,14 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.primary, AppColors.primary.withValues(alpha: 0.7)],
+          colors: [AppColors.primary, AppColors.primary.withOpacity(0.7)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.2),
+            color: AppColors.primary.withOpacity(0.2),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -183,8 +184,7 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
         children: widget.analysis.requiredApis.asMap().entries.map((entry) {
           int index = entry.key;
           String api = entry.value;
-          String description =
-              apiDescriptions[api] ??
+          String description = apiDescriptions[api] ??
               'Configure and integrate this API/library into your project.';
 
           return Container(
@@ -196,7 +196,7 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
               border: Border.all(color: AppColors.border),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.04),
+                  color: Colors.black.withOpacity(0.04),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -211,7 +211,7 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
+                        color: AppColors.primary.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Center(
@@ -230,9 +230,9 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                       child: Text(
                         api,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.text,
-                          fontWeight: FontWeight.w600,
-                        ),
+                              color: AppColors.text,
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                     ),
                   ],
@@ -247,9 +247,9 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                   child: Text(
                     description,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.text,
-                      height: 1.5,
-                    ),
+                          color: AppColors.text,
+                          height: 1.5,
+                        ),
                   ),
                 ),
               ],
@@ -330,7 +330,7 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
               border: Border.all(color: AppColors.border),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.04),
+                  color: Colors.black.withOpacity(0.04),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -345,7 +345,7 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
+                        color: AppColors.primary.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
@@ -361,9 +361,9 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                       child: Text(
                         'Schedule ${index + 1}',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.text,
-                        ),
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.text,
+                            ),
                       ),
                     ),
                   ],
@@ -378,9 +378,9 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                   child: Text(
                     schedule,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.text,
-                      height: 1.5,
-                    ),
+                          color: AppColors.text,
+                          height: 1.5,
+                        ),
                   ),
                 ),
               ],
@@ -415,10 +415,10 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
+              border: Border.all(color: Colors.orange.withOpacity(0.3)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.04),
+                  color: Colors.black.withOpacity(0.04),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -433,7 +433,7 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Colors.orange.withValues(alpha: 0.1),
+                        color: Colors.orange.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
@@ -449,9 +449,9 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                       child: Text(
                         'Reminder ${index + 1}',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.text,
-                        ),
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.text,
+                            ),
                       ),
                     ),
                   ],
@@ -466,9 +466,9 @@ class _AnalysisResultsScreenState extends State<AnalysisResultsScreen>
                   child: Text(
                     reminder,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.text,
-                      height: 1.5,
-                    ),
+                          color: AppColors.text,
+                          height: 1.5,
+                        ),
                   ),
                 ),
               ],
@@ -559,7 +559,7 @@ class _MilestoneCardState extends State<_MilestoneCard> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.1),
+                      color: AppColors.primary.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -579,11 +579,11 @@ class _MilestoneCardState extends State<_MilestoneCard> {
                       children: [
                         Text(
                           widget.milestone.title,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.text,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.text,
+                                  ),
                         ),
                         const SizedBox(height: 4),
                         Row(
@@ -596,7 +596,9 @@ class _MilestoneCardState extends State<_MilestoneCard> {
                             const SizedBox(width: 4),
                             Text(
                               '${widget.milestone.estimatedDays} days',
-                              style: Theme.of(context).textTheme.bodyMedium
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
                                   ?.copyWith(
                                     color: AppColors.textSecondary,
                                     fontWeight: FontWeight.w500,
@@ -625,16 +627,16 @@ class _MilestoneCardState extends State<_MilestoneCard> {
                   Text(
                     widget.milestone.description,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.text,
-                      height: 1.5,
-                    ),
+                          color: AppColors.text,
+                          height: 1.5,
+                        ),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     'Subtasks',
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   ...widget.milestone.subtasks.asMap().entries.map((entry) {
@@ -667,7 +669,7 @@ class _MilestoneCardState extends State<_MilestoneCard> {
                                   ),
                                   borderRadius: BorderRadius.circular(4),
                                   color: isChecked
-                                      ? Colors.green.withValues(alpha: 0.1)
+                                      ? Colors.green.withOpacity(0.1)
                                       : null,
                                 ),
                                 child: isChecked

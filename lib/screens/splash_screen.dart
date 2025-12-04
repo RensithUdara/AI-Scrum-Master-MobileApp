@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/colors.dart';
 import '../constants/strings.dart';
 import '../widgets/ios_button.dart';
@@ -35,11 +36,11 @@ class _SplashScreenState extends State<SplashScreen>
 
     _slideAnimation =
         Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(
-          CurvedAnimation(
-            parent: _animationController,
-            curve: Curves.easeOutCubic,
-          ),
-        );
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeOutCubic,
+      ),
+    );
 
     _animationController.forward();
   }
@@ -76,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
                                 gradient: LinearGradient(
                                   colors: [
                                     AppColors.primary,
-                                    AppColors.primary.withValues(alpha: 0.7),
+                                    AppColors.primary.withOpacity(0.7),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -84,9 +85,7 @@ class _SplashScreenState extends State<SplashScreen>
                                 borderRadius: BorderRadius.circular(30),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AppColors.primary.withValues(
-                                      alpha: 0.3,
-                                    ),
+                                    color: AppColors.primary.withOpacity(0.3),
                                     blurRadius: 16,
                                     offset: const Offset(0, 8),
                                   ),

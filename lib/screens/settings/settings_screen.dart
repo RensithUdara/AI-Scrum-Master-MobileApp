@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../constants/colors.dart';
 import '../../providers/auth_provider.dart';
 
@@ -33,9 +35,9 @@ class SettingsScreen extends StatelessWidget {
                 child: Text(
                   'Account',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.text,
-                  ),
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.text,
+                      ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -45,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: Colors.black.withOpacity(0.08),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -65,7 +67,7 @@ class SettingsScreen extends StatelessWidget {
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
                                 colors: [
-                                  AppColors.primary.withValues(alpha: 0.8),
+                                  AppColors.primary.withOpacity(0.8),
                                   AppColors.primary,
                                 ],
                               ),
@@ -75,11 +77,12 @@ class SettingsScreen extends StatelessWidget {
                                 (authProvider.user?.displayName?.isNotEmpty ??
                                         false)
                                     ? authProvider.user!.displayName![0]
-                                          .toUpperCase()
+                                        .toUpperCase()
                                     : (authProvider.user?.email?.isNotEmpty ??
-                                          false)
-                                    ? authProvider.user!.email[0].toUpperCase()
-                                    : 'A',
+                                            false)
+                                        ? authProvider.user!.email[0]
+                                            .toUpperCase()
+                                        : 'A',
                                 style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 24,
@@ -133,9 +136,9 @@ class SettingsScreen extends StatelessWidget {
                 child: Text(
                   'App',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.text,
-                  ),
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.text,
+                      ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -145,7 +148,7 @@ class SettingsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: Colors.black.withOpacity(0.08),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -178,9 +181,9 @@ class SettingsScreen extends StatelessWidget {
                 child: Text(
                   'Account',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.text,
-                  ),
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.text,
+                      ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -190,7 +193,7 @@ class SettingsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: Colors.black.withOpacity(0.08),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),

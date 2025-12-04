@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:ui';
+
+import 'package:flutter/material.dart';
 
 class ProcessingDialog extends StatefulWidget {
   const ProcessingDialog({super.key});
@@ -50,7 +51,7 @@ class _ProcessingDialogState extends State<ProcessingDialog>
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
-        backgroundColor: Colors.black.withValues(alpha: 0.6),
+        backgroundColor: Colors.black.withOpacity(0.6),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -73,7 +74,7 @@ class _ProcessingDialogState extends State<ProcessingDialog>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Colors.blue.withValues(alpha: 0.3),
+                            color: Colors.blue.withOpacity(0.3),
                             width: 3,
                           ),
                         ),
@@ -92,7 +93,7 @@ class _ProcessingDialogState extends State<ProcessingDialog>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Colors.blue.withValues(alpha: 0.5),
+                            color: Colors.blue.withOpacity(0.5),
                             width: 2,
                           ),
                         ),
@@ -193,9 +194,9 @@ class _AnimatedTextState extends State<_AnimatedText>
         return Text(
           'Processing$dotString',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
         );
       },
     );
@@ -251,9 +252,9 @@ class _RotatingStatusMessagesState extends State<_RotatingStatusMessages>
             key: ValueKey(messageIndex),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.white70,
-              height: 1.4,
-            ),
+                  color: Colors.white70,
+                  height: 1.4,
+                ),
           ),
         );
       },
@@ -315,9 +316,7 @@ class _ProcessingStepsState extends State<_ProcessingSteps>
                 height: 8,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: isActive
-                      ? Colors.blue
-                      : Colors.blue.withValues(alpha: 0.2),
+                  color: isActive ? Colors.blue : Colors.blue.withOpacity(0.2),
                 ),
               ),
             );
